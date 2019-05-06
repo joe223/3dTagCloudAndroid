@@ -21,38 +21,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tagCloudView = (TagCloudView) findViewById(R.id.tag_cloud);
 
-        textTagsAdapter = new TextTagsAdapter(new String[20]);
+        textTagsAdapter = new TextTagsAdapter(new String[50]);
         viewTagsAdapter = new ViewTagsAdapter();
         vectorTagsAdapter = new VectorTagsAdapter();
 
         tagCloudView.setAdapter(textTagsAdapter);
 
-        findViewById(R.id.tag_text).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tagCloudView.setAdapter(textTagsAdapter);
-            }
-        });
-
-        findViewById(R.id.tag_view).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tagCloudView.setAdapter(viewTagsAdapter);
-            }
-        });
-
-        findViewById(R.id.tag_vector).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tagCloudView.setAdapter(vectorTagsAdapter);
-            }
-        });
-
-        findViewById(R.id.test_fragment).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FragmentTestActivity.class));
-            }
-        });
+//        findViewById(R.id.tag_text).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tagCloudView.setAdapter(textTagsAdapter);
+//            }
+//        });
+//
+//        findViewById(R.id.tag_view).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tagCloudView.setAdapter(viewTagsAdapter);
+//            }
+//        });
+//
+//        findViewById(R.id.tag_vector).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tagCloudView.setAdapter(vectorTagsAdapter);
+//            }
+//        });
+//
+//        findViewById(R.id.test_fragment).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, FragmentTestActivity.class));
+//            }
+//        });
     }
 }

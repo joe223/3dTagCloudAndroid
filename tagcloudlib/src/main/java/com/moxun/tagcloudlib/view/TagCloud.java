@@ -22,6 +22,8 @@ package com.moxun.tagcloudlib.view;
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import android.view.View;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -225,14 +227,19 @@ public class TagCloud {
             // let's set position, scale, alpha for the tag;
             tagCloud.get(j).setLoc2DX((int) (rx3 * per));
             tagCloud.get(j).setLoc2DY((int) (ry3 * per));
-            tagCloud.get(j).setScale(per);
+//            tagCloud.get(j).setScale(per);
 
             // calculate alpha value
-            float delta = diameter + rz3;
-            maxDelta = Math.max(maxDelta, delta);
-            minDelta = Math.min(minDelta, delta);
-            float alpha = (delta - minDelta) / (maxDelta - minDelta);
-            tagCloud.get(j).setAlpha(1 - alpha);
+//            float delta = diameter + rz3;
+//            maxDelta = Math.max(maxDelta, delta);
+//            minDelta = Math.min(minDelta, delta);
+//            float alpha = (delta - minDelta) / (maxDelta - minDelta);
+//            tagCloud.get(j).setAlpha(1 - alpha);
+            if (tagCloud.get(j).getLocZ() < 0) {
+                tagCloud.get(j).getView().setVisibility(View.INVISIBLE);
+            } else {
+                tagCloud.get(j).getView().setVisibility(View.VISIBLE);
+            }
         }
         sortTagByScale();
     }

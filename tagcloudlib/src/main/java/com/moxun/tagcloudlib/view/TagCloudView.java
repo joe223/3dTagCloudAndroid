@@ -32,6 +32,7 @@ import android.os.Looper;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -189,7 +190,7 @@ public class TagCloudView extends ViewGroup implements Runnable, TagsAdapter.OnD
             public void run() {
                 centerX = (getRight() - getLeft()) / 2;
                 centerY = (getBottom() - getTop()) / 2;
-                radius = Math.min(centerX * radiusPercent, centerY * radiusPercent);
+                radius = Math.max(centerX, centerY) * 1.66f; //Math.min(centerX * radiusPercent, centerY * radiusPercent);
                 mTagCloud.setRadius((int) radius);
 
                 mTagCloud.setTagColorLight(lightColor);//higher color
@@ -325,9 +326,9 @@ public class TagCloudView extends ViewGroup implements Runnable, TagsAdapter.OnD
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (manualScroll) {
-            handleTouchEvent(ev);
-        }
+//        if (manualScroll) {
+//            handleTouchEvent(ev);
+//        }
         return false;
     }
 
@@ -349,8 +350,8 @@ public class TagCloudView extends ViewGroup implements Runnable, TagsAdapter.OnD
                 isOnTouch = true;
             case MotionEvent.ACTION_MOVE:
                 //rotate elements depending on how far the selection point is from center of cloud
-                float dx = e.getX() - downX;
-                float dy = e.getY() - downY;
+                float dx = downX - e.getX();
+                float dy = downY - e.getY();
                 if (isValidMove(dx, dy)) {
                     mAngleX = (dy / radius) * speed * TOUCH_SCALE_FACTOR;
                     mAngleY = (-dx / radius) * speed * TOUCH_SCALE_FACTOR;
